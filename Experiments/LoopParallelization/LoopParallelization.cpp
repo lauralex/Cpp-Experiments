@@ -35,6 +35,6 @@ int main()
 		std::cout << array3[i] << std::endl;
 	}*/
 
-	std::cout << "Duration: " << std::chrono::duration_cast<std::chrono::duration<float>>(t2 - t1).count() << std::endl;
+	std::cout << "Duration: " << std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1).count() << std::endl;
 	return 0;
 }

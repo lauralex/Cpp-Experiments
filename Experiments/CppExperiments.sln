@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoopParallelization", "Loop
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AMP-parallelization", "AMP-parallelization\AMP-parallelization.vcxproj", "{EE1C8D07-B7E8-4E99-9690-527F7B281F84}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SmartPointer-example", "SmartPointer-example\SmartPointer-example.vcxproj", "{49A5957D-0B83-47DC-ABC3-A1066006FB81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{EE1C8D07-B7E8-4E99-9690-527F7B281F84}.Release|x64.Build.0 = Release|x64
 		{EE1C8D07-B7E8-4E99-9690-527F7B281F84}.Release|x86.ActiveCfg = Release|Win32
 		{EE1C8D07-B7E8-4E99-9690-527F7B281F84}.Release|x86.Build.0 = Release|Win32
+		{49A5957D-0B83-47DC-ABC3-A1066006FB81}.Debug|x64.ActiveCfg = Debug|x64
+		{49A5957D-0B83-47DC-ABC3-A1066006FB81}.Debug|x64.Build.0 = Debug|x64
+		{49A5957D-0B83-47DC-ABC3-A1066006FB81}.Debug|x86.ActiveCfg = Debug|Win32
+		{49A5957D-0B83-47DC-ABC3-A1066006FB81}.Debug|x86.Build.0 = Debug|Win32
+		{49A5957D-0B83-47DC-ABC3-A1066006FB81}.Release|x64.ActiveCfg = Release|x64
+		{49A5957D-0B83-47DC-ABC3-A1066006FB81}.Release|x64.Build.0 = Release|x64
+		{49A5957D-0B83-47DC-ABC3-A1066006FB81}.Release|x86.ActiveCfg = Release|Win32
+		{49A5957D-0B83-47DC-ABC3-A1066006FB81}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
