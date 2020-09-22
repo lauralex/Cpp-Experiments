@@ -37,14 +37,12 @@ smart_ptr::smart_ptr(const std::string& my_string)
 {
 	my_string_ = std::make_unique<char[]>(20);
 	my_string.copy(my_string_.get(), 20, 0);
-	
-	
 }
 
 void check_mem()
 {
-	const std_string pex("hello");
-	const smart_ptr rex("neck");
+	const std_string pex{"hello"};
+	const smart_ptr rex{"neck"};
 	pex.print();
 }
 
