@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{ed803e6f-a8eb-41dd-a24e-b51d8ea44ed1}</ProjectGuid>
-    <RootNamespace>ShallowCopy</RootNamespace>
+    <RootNamespace>LoopParallelization</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>LoopParallelization</ProjectName>
   </PropertyGroup>
