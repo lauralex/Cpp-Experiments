@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoopParallelization", "LoopParallelization\LoopParallelization.vcxproj", "{ED803E6F-A8EB-41DD-A24E-B51D8EA44ED1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AMP-parallelization", "AMP-parallelization\AMP-parallelization.vcxproj", "{EE1C8D07-B7E8-4E99-9690-527F7B281F84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{ED803E6F-A8EB-41DD-A24E-B51D8EA44ED1}.Release|x64.Build.0 = Release|x64
 		{ED803E6F-A8EB-41DD-A24E-B51D8EA44ED1}.Release|x86.ActiveCfg = Release|Win32
 		{ED803E6F-A8EB-41DD-A24E-B51D8EA44ED1}.Release|x86.Build.0 = Release|Win32
+		{EE1C8D07-B7E8-4E99-9690-527F7B281F84}.Debug|x64.ActiveCfg = Debug|x64
+		{EE1C8D07-B7E8-4E99-9690-527F7B281F84}.Debug|x64.Build.0 = Debug|x64
+		{EE1C8D07-B7E8-4E99-9690-527F7B281F84}.Debug|x86.ActiveCfg = Debug|Win32
+		{EE1C8D07-B7E8-4E99-9690-527F7B281F84}.Debug|x86.Build.0 = Debug|Win32
+		{EE1C8D07-B7E8-4E99-9690-527F7B281F84}.Release|x64.ActiveCfg = Release|x64
+		{EE1C8D07-B7E8-4E99-9690-527F7B281F84}.Release|x64.Build.0 = Release|x64
+		{EE1C8D07-B7E8-4E99-9690-527F7B281F84}.Release|x86.ActiveCfg = Release|Win32
+		{EE1C8D07-B7E8-4E99-9690-527F7B281F84}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,12 +10,12 @@
 #include <vector>
 #include <chrono>
 
-const int size = 1000000;
+const int Size = 1000000;
 
 int main()
 {
-	std::vector<int> array1(size), array2(size);
-	std::vector<int> array3(size);
+	std::vector<int> array1(Size), array2(Size);
+	std::vector<int> array3(Size);
 	std::generate(array1.begin(), array1.end(), []() { return rand() % 100; });
 	std::generate(array2.begin(), array2.end(), []() { return rand() % 100; });
 
@@ -23,7 +23,7 @@ int main()
 
 #pragma loop(ivdep)  // This loop will probably NOT be parallelized (if you add the following line, the parallelization will be forced)
 #pragma loop(hint_parallel(4)) // This will use 4 threads
-	for (auto i = 0; i < size; i++)
+	for (auto i = 0; i < Size; i++)
 	{
 		array3[i] = array1[i] * static_cast<int>(sqrt(array1[i])) + static_cast<int>(sqrt(array2[i] * 5));
 	}
