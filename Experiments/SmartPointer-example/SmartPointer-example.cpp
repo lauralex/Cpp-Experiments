@@ -12,12 +12,13 @@ class std_string
 public:
 	explicit std_string(std::string my_string);
 	void print() const;
+	std_string() = delete;
 
 private:
 	std::string my_string_;
 };
 
-std_string::std_string(std::string my_string): my_string_(std::move(my_string))
+std_string::std_string(std::string my_string) : my_string_{std::move(my_string)}
 {
 }
 
@@ -34,6 +35,7 @@ class smart_ptr
 {
 public:
 	explicit smart_ptr(const std::string& my_string);
+	smart_ptr() = delete;
 
 private:
 	std::unique_ptr<char[]> my_string_;
@@ -56,7 +58,7 @@ int main()
 {
 	// Check if there are any memory leaks! (if we use smart pointers, there won't be any!)
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	
+
 	check_mem();
 	return 0;
 }
