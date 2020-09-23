@@ -1,0 +1,63 @@
+{
+  "context": {
+    "date": "2020-09-23T20:30:52+02:00",
+    "host_name": "DESKTOP-7N00GT6",
+    "executable": "dotProd.exe",
+    "num_cpus": 4,
+    "mhz_per_cpu": 3400,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 262144,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 6291456,
+        "num_sharing": 4
+      }
+    ],
+    "load_avg": [],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "valarr",
+      "run_name": "valarr",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 11200000,
+      "real_time": 6.1011187500038687e+01,
+      "cpu_time": 6.1383928571428569e+01,
+      "time_unit": "ns"
+    },
+    {
+      "name": "inner",
+      "run_name": "inner",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 203636364,
+      "real_time": 3.4831936991349526e+00,
+      "cpu_time": 3.4528459759770609e+00,
+      "time_unit": "ns"
+    }
+  ]
+}
