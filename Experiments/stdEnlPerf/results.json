@@ -1,0 +1,63 @@
+{
+  "context": {
+    "date": "2020-09-24T15:00:35+02:00",
+    "host_name": "DESKTOP-7N00GT6",
+    "executable": "stdEnlPerf.exe",
+    "num_cpus": 4,
+    "mhz_per_cpu": 3400,
+    "caches": [
+      {
+        "type": "Data",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 1
+      },
+      {
+        "type": "Instruction",
+        "level": 1,
+        "size": 32768,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 2,
+        "size": 262144,
+        "num_sharing": 1
+      },
+      {
+        "type": "Unified",
+        "level": 3,
+        "size": 6291456,
+        "num_sharing": 4
+      }
+    ],
+    "load_avg": [],
+    "library_build_type": "release"
+  },
+  "benchmarks": [
+    {
+      "name": "with_std_endl",
+      "run_name": "with_std_endl",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 44800,
+      "real_time": 5.4490029017862136e+04,
+      "cpu_time": 1.5694754464285714e+04,
+      "time_unit": "ns"
+    },
+    {
+      "name": "without_std_endl",
+      "run_name": "without_std_endl",
+      "run_type": "iteration",
+      "repetitions": 0,
+      "repetition_index": 0,
+      "threads": 1,
+      "iterations": 100000,
+      "real_time": 3.2975599000001239e+04,
+      "cpu_time": 5.6250000000000000e+03,
+      "time_unit": "ns"
+    }
+  ]
+}
