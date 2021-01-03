@@ -179,7 +179,7 @@ constexpr const char* vcp_code_desc(const BYTE vcp_code)
 	}
 }
 
-constexpr const char* vcp_feature_desc(const BYTE vcp_code, const BYTE feature_code)
+constexpr const char* vcp_feature_desc(const BYTE vcp_code, const DWORD feature_code)
 {
 	switch (vcp_code)
 	{
@@ -648,7 +648,7 @@ int main()
 		std::cout << "Code type: " << vcp_enum_to_string(code_type) << std::endl;
 		std::cout << "Current value: " << current_value << " - hex: " << std::hex << std::setfill('0') << std::setw(2)
 			<< current_value << " - " <<
-			vcp_feature_desc(chosen_vcp_code, static_cast<BYTE>(current_value)) << std::endl;
+			vcp_feature_desc(chosen_vcp_code, current_value) << std::endl;
 		std::cout.copyfmt(state);
 		std::cout << "Maximum value: " << maximum_value << " - hex: " << std::hex << std::setfill('0') << std::setw(2)
 			<< maximum_value << std::endl;
