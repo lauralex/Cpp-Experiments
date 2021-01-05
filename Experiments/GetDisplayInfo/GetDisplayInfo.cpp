@@ -615,11 +615,11 @@ int main()
 	}
 
 	BYTE chosen_vcp_code;
-
+	cicco:
 	while (true)
 	{
 		std::string inp_str;
-		std::cout << "Choose a vcp code: ";
+		std::cout << "Choose a VCP CODE: ";
 		std::cin >> inp_str;
 		if (inp_str == "-1")
 		{
@@ -653,6 +653,82 @@ int main()
 		std::cout << "Maximum value: " << maximum_value << " - hex: " << std::hex << std::setfill('0') << std::setw(2)
 			<< maximum_value << std::endl;
 		std::cout.copyfmt(state);
+
+		if (std::strcmp(vcp_code_desc(chosen_vcp_code), "BRIGHTNESS") == 0)
+		{
+			char power_off;
+			std::cout << "Do you want to change value? (y or n): ";
+			std::cin >> power_off;
+			power_off = static_cast<char>(std::tolower(power_off));
+			if (power_off == 'y')
+			{
+				std::string new_value_str;
+				DWORD new_value;
+				
+				std::cout << "CHANGE BRIGHTNESS (USE LEFT AND RIGHT KEYS OR 'C' TO GO BACK): ";
+				HANDLE input_handle = GetStdHandle(STD_INPUT_HANDLE);
+				DWORD console_mode;
+				DWORD cnum_read;
+				INPUT_RECORD ir_buf[128];
+				GetConsoleMode(input_handle, &console_mode);
+				SetConsoleMode(input_handle, 0);
+				
+				while (true)
+				{
+					auto wait_res = WaitForSingleObject(input_handle, INFINITE);
+					if (!ReadConsoleInput(input_handle, ir_buf, 128, &cnum_read))
+					{
+						SetConsoleMode(input_handle, console_mode);
+						std::cerr << "Cannot read input!" << std::endl;
+						ExitProcess(0);
+					}
+					
+					for (int i = 0; i < cnum_read; i++)
+					{
+						switch (ir_buf[i].EventType)
+						{
+						case KEY_EVENT:
+							switch (ir_buf[i].Event.KeyEvent.wVirtualKeyCode)
+							{
+							case VK_RIGHT:
+								if (ir_buf[i].Event.KeyEvent.bKeyDown)
+								{
+									SetVCPFeature(selected_phys_mon, chosen_vcp_code, current_value + 1);
+									GetVCPFeatureAndVCPFeatureReply(selected_phys_mon, chosen_vcp_code, &code_type, &current_value, &maximum_value);
+									std::cout << "Current value: " << current_value << std::endl;
+								}
+								break;
+							case VK_LEFT:
+								if (ir_buf[i].Event.KeyEvent.bKeyDown)
+								{
+									SetVCPFeature(selected_phys_mon, chosen_vcp_code, current_value - 1);
+									GetVCPFeatureAndVCPFeatureReply(selected_phys_mon, chosen_vcp_code, &code_type, &current_value, &maximum_value);
+									std::cout << "Current value: " << current_value << std::endl;
+								}
+								break;
+							case 0X43:
+								SetConsoleMode(input_handle, console_mode);
+								goto cicco;
+							}
+						}
+					}
+				}
+				
+				/*std::cin >> new_value_str;
+				try
+				{
+					new_value = std::stoul(new_value_str);
+					
+					Sleep(1000);
+					auto success = SetVCPFeature(selected_phys_mon, chosen_vcp_code, new_value);
+					std::cout << "Success: " << success << std::endl;
+				}
+				catch (std::invalid_argument& invalid_argument_exception)
+				{
+					std::cerr << invalid_argument_exception.what() << std::endl;
+				}*/
+			}
+		}
 	}
 
 	DestroyPhysicalMonitors(phys_mon_number, phys_monitor_array);

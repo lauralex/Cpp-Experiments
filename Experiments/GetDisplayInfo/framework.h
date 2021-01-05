@@ -1,13 +1,11 @@
 ﻿#pragma once
 #define WIN32_LEAN_AND_MEAN
 #define NOGDICAPMASKS
-#define NOVIRTUALKEYCODES
 #define NOWINMESSAGES
 #define NOWINSTYLES
 #define NOSYSMETRICS
 #define NOMENUS
 #define NOICONS
-#define NOKEYSTATES
 #define NOSYSCOMMANDS
 #define NORASTEROPS
 #define NOSHOWWINDOW
