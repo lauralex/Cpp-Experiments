@@ -615,17 +615,33 @@ int main()
 	}
 
 	BYTE chosen_vcp_code;
-	cicco:
+
+	std::cout << std::endl <<
+		"You can select a VCP CODE. In this program you can change BRIGHTNESS (10) and CONTRAST (12). Then you can change the values with the LEFT and RIGHT keys. "
+		<< "Then you can return to the main menu with the C key."
+		<< std::endl;
+
+cicco:
 	while (true)
 	{
 		std::string inp_str;
 		std::cout << "Choose a VCP CODE: ";
 		std::cin >> inp_str;
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
 		if (inp_str == "-1")
 		{
 			break;
 		}
-		chosen_vcp_code = static_cast<BYTE>(std::stoi(inp_str, nullptr, 16));
+		try
+		{
+			chosen_vcp_code = static_cast<BYTE>(std::stoi(inp_str, nullptr, 16));
+		}
+		catch (std::invalid_argument& invalid_argument_exception)
+		{
+			std::cerr << "Parsing error! Input should be an hexadecimal number!" << std::endl << invalid_argument_exception.what() << std::endl;
+			continue;
+		}
 
 
 		if (!std::any_of(vcp_codes.begin(), vcp_codes.end(), [chosen_vcp_code](std::tuple<BYTE, std::vector<BYTE>> elem)
@@ -654,25 +670,29 @@ int main()
 			<< maximum_value << std::endl;
 		std::cout.copyfmt(state);
 
-		if (std::strcmp(vcp_code_desc(chosen_vcp_code), "BRIGHTNESS") == 0)
+		if (std::strcmp(vcp_code_desc(chosen_vcp_code), "BRIGHTNESS") == 0 || std::strcmp(
+			vcp_code_desc(chosen_vcp_code), "CONTRAST") == 0)
 		{
-			char power_off;
+			char choice;
 			std::cout << "Do you want to change value? (y or n): ";
-			std::cin >> power_off;
-			power_off = static_cast<char>(std::tolower(power_off));
-			if (power_off == 'y')
+			std::cin >> choice;
+			std::cin.clear();
+			std::cin.ignore(INT_MAX, '\n');
+			choice = static_cast<char>(std::tolower(choice));
+			if (choice == 'y')
 			{
-				std::string new_value_str;
-				DWORD new_value;
-				
-				std::cout << "CHANGE BRIGHTNESS (USE LEFT AND RIGHT KEYS OR 'C' TO GO BACK): ";
+				// std::string new_value_str;
+				// DWORD new_value;
+
+				std::cout << "CHANGE " << vcp_code_desc(chosen_vcp_code) <<
+					" (USE LEFT AND RIGHT KEYS OR 'C' TO GO BACK): ";
 				HANDLE input_handle = GetStdHandle(STD_INPUT_HANDLE);
 				DWORD console_mode;
 				DWORD cnum_read;
 				INPUT_RECORD ir_buf[128];
 				GetConsoleMode(input_handle, &console_mode);
 				SetConsoleMode(input_handle, 0);
-				
+
 				while (true)
 				{
 					auto wait_res = WaitForSingleObject(input_handle, INFINITE);
@@ -682,8 +702,8 @@ int main()
 						std::cerr << "Cannot read input!" << std::endl;
 						ExitProcess(0);
 					}
-					
-					for (int i = 0; i < cnum_read; i++)
+
+					for (DWORD i = 0; i < cnum_read; i++)
 					{
 						switch (ir_buf[i].EventType)
 						{
@@ -694,26 +714,29 @@ int main()
 								if (ir_buf[i].Event.KeyEvent.bKeyDown)
 								{
 									SetVCPFeature(selected_phys_mon, chosen_vcp_code, current_value + 1);
-									GetVCPFeatureAndVCPFeatureReply(selected_phys_mon, chosen_vcp_code, &code_type, &current_value, &maximum_value);
-									std::cout << "Current value: " << current_value << std::endl;
+									GetVCPFeatureAndVCPFeatureReply(selected_phys_mon, chosen_vcp_code, &code_type,
+									                                &current_value, &maximum_value);
+									std::cout << std::endl << "Current value: " << current_value;
 								}
 								break;
 							case VK_LEFT:
 								if (ir_buf[i].Event.KeyEvent.bKeyDown)
 								{
 									SetVCPFeature(selected_phys_mon, chosen_vcp_code, current_value - 1);
-									GetVCPFeatureAndVCPFeatureReply(selected_phys_mon, chosen_vcp_code, &code_type, &current_value, &maximum_value);
-									std::cout << "Current value: " << current_value << std::endl;
+									GetVCPFeatureAndVCPFeatureReply(selected_phys_mon, chosen_vcp_code, &code_type,
+									                                &current_value, &maximum_value);
+									std::cout << std::endl << "Current value: " << current_value;
 								}
 								break;
-							case 0X43:
+							case 'C':
 								SetConsoleMode(input_handle, console_mode);
+								std::cout << std::endl;
 								goto cicco;
 							}
 						}
 					}
 				}
-				
+
 				/*std::cin >> new_value_str;
 				try
 				{
